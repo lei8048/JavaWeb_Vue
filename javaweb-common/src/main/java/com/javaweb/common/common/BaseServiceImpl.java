@@ -56,12 +56,12 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
      */
     @Override
     public JsonResult add(T entity) {
-        return JsonResult.error("演示系统禁止操作");
-//        boolean result = this.save(entity);
-//        if (!result) {
-//            return JsonResult.error();
-//        }
-//        return JsonResult.success();
+//        return JsonResult.error("演示系统禁止操作");
+        boolean result = this.save(entity);
+        if (!result) {
+            return JsonResult.error();
+        }
+        return JsonResult.success();
     }
 
     /**
@@ -72,12 +72,12 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
      */
     @Override
     public JsonResult update(T entity) {
-        return JsonResult.error("演示系统禁止操作");
-//        boolean result = this.updateById(entity);
-//        if (!result) {
-//            return JsonResult.error();
-//        }
-//        return JsonResult.success();
+//        return JsonResult.error("演示系统禁止操作");
+        boolean result = this.updateById(entity);
+        if (!result) {
+            return JsonResult.error();
+        }
+        return JsonResult.success();
     }
 
     /**
@@ -88,12 +88,12 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
      */
     @Override
     public JsonResult edit(T entity) {
-        return JsonResult.error("演示系统禁止操作");
-//        boolean result = this.saveOrUpdate(entity);
-//        if (!result) {
-//            return JsonResult.error();
-//        }
-//        return JsonResult.success();
+//        return JsonResult.error("演示系统禁止操作");
+        boolean result = this.saveOrUpdate(entity);
+        if (!result) {
+            return JsonResult.error();
+        }
+        return JsonResult.success();
     }
 
     /**
@@ -104,12 +104,12 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
      */
     @Override
     public JsonResult delete(T entity) {
-        return JsonResult.error("演示系统禁止操作");
-//        boolean result = this.updateById(entity);
-//        if (!result) {
-//            return JsonResult.error();
-//        }
-//        return JsonResult.success("删除成功");
+//        return JsonResult.error("演示系统禁止操作");
+        boolean result = this.updateById(entity);
+        if (!result) {
+            return JsonResult.error();
+        }
+        return JsonResult.success("删除成功");
     }
 
     /**
@@ -120,15 +120,15 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
      */
     @Override
     public JsonResult deleteById(Integer id) {
-        return JsonResult.error("演示系统禁止操作");
-//        if (StringUtils.isEmpty(id)) {
-//            return JsonResult.error("记录ID不能为空");
-//        }
-//        boolean result = this.removeById(id);
-//        if (!result) {
-//            return JsonResult.error();
-//        }
-//        return JsonResult.success("删除成功");
+//        return JsonResult.error("演示系统禁止操作");
+        if (StringUtils.isEmpty(id)) {
+            return JsonResult.error("记录ID不能为空");
+        }
+        boolean result = this.removeById(id);
+        if (!result) {
+            return JsonResult.error();
+        }
+        return JsonResult.success("删除成功");
     }
 
     /**
@@ -139,19 +139,19 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
      */
     @Override
     public JsonResult deleteByIds(String ids) {
-        return JsonResult.error("演示系统禁止操作");
-//        if (StringUtils.isEmpty(ids)) {
-//            return JsonResult.error("记录ID不能为空");
-//        }
-//        String[] item = ids.split(",");
-//        Integer totalNum = 0;
-//        for (String id : item) {
-//            boolean result = this.removeById(id);
-//            if (result) {
-//                totalNum++;
-//            }
-//        }
-//        return JsonResult.error(String.format("本次共删除【%s】条记录", totalNum));
+//        return JsonResult.error("演示系统禁止操作");
+        if (StringUtils.isEmpty(ids)) {
+            return JsonResult.error("记录ID不能为空");
+        }
+        String[] item = ids.split(",");
+        Integer totalNum = 0;
+        for (String id : item) {
+            boolean result = this.removeById(id);
+            if (result) {
+                totalNum++;
+            }
+        }
+        return JsonResult.error(String.format("本次共删除【%s】条记录", totalNum));
     }
 
     /**
@@ -162,8 +162,8 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
      */
     @Override
     public JsonResult setStatus(T entity) {
-        return JsonResult.error("演示系统禁止操作");
-//        return this.update(entity);
+//        return JsonResult.error("演示系统禁止操作");
+        return this.update(entity);
     }
 
     /**

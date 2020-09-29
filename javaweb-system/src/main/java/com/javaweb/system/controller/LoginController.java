@@ -122,6 +122,7 @@ public class LoginController extends BaseController {
      */
     @PostMapping("/profile")
     public JsonResult profile(@RequestBody UpdateInfoDto updateInfoDto) throws IOException {
+//        return JsonResult.error("演示系统禁止操作");
         // 头像验证
         if (StringUtils.isEmpty(updateInfoDto.getAvatar())) {
             return JsonResult.error("请上传头像");
@@ -160,6 +161,7 @@ public class LoginController extends BaseController {
      */
     @PostMapping("/editPassword")
     public JsonResult editPassword(@RequestBody UpdatePwdDto updatePwdDto) {
+//        return JsonResult.error("演示系统禁止操作");
         // 原密码校验
         if (StringUtils.isEmpty(updatePwdDto.getOldPassword())) {
             return JsonResult.error("原密码不能为空");
