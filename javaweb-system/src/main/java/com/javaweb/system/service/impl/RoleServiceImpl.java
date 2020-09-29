@@ -159,42 +159,43 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, Role> implement
      */
     @Override
     public JsonResult setRules(RoleRulesDto roleRulesDto) {
-        // 角色ID
-        if (roleRulesDto.getId() == null || roleRulesDto.getId() <= 0) {
-            return JsonResult.error("角色ID不能为空");
-        }
-        if (StringUtils.isEmpty(roleRulesDto.getRules())) {
-            return JsonResult.error("请选择权限菜单");
-        }
-
-        // 保存数据(逗号分隔)
-        Role entity = new Role();
-        entity.setId(roleRulesDto.getId());
-        entity.setRules(roleRulesDto.getRules());
-        boolean result = this.updateById(entity);
-        if (!result) {
-            return JsonResult.error("权限设置失败");
-        }
-
-        // 删除已存在的数据
-        roleMenuMapper.delete(new LambdaQueryWrapper<RoleMenu>().eq(RoleMenu::getRoleId, roleRulesDto.getId()));
-
-        // 插入角色菜单关系表数据
-        Integer totalNum = 0;
-        String[] strings = roleRulesDto.getRules().split(",");
-        for (String string : strings) {
-            RoleMenu roleMenu = new RoleMenu();
-            roleMenu.setRoleId(roleRulesDto.getId());
-            roleMenu.setMenuId(Integer.valueOf(string));
-            Integer result2 = roleMenuMapper.insert(roleMenu);
-            if (result2 == 1) {
-                totalNum++;
-            }
-        }
-        if (totalNum == strings.length) {
-            return JsonResult.success("权限设置成功");
-        }
-        return JsonResult.error("权限设置失败");
+        return JsonResult.error("演示系统禁止操作");
+//        // 角色ID
+//        if (roleRulesDto.getId() == null || roleRulesDto.getId() <= 0) {
+//            return JsonResult.error("角色ID不能为空");
+//        }
+//        if (StringUtils.isEmpty(roleRulesDto.getRules())) {
+//            return JsonResult.error("请选择权限菜单");
+//        }
+//
+//        // 保存数据(逗号分隔)
+//        Role entity = new Role();
+//        entity.setId(roleRulesDto.getId());
+//        entity.setRules(roleRulesDto.getRules());
+//        boolean result = this.updateById(entity);
+//        if (!result) {
+//            return JsonResult.error("权限设置失败");
+//        }
+//
+//        // 删除已存在的数据
+//        roleMenuMapper.delete(new LambdaQueryWrapper<RoleMenu>().eq(RoleMenu::getRoleId, roleRulesDto.getId()));
+//
+//        // 插入角色菜单关系表数据
+//        Integer totalNum = 0;
+//        String[] strings = roleRulesDto.getRules().split(",");
+//        for (String string : strings) {
+//            RoleMenu roleMenu = new RoleMenu();
+//            roleMenu.setRoleId(roleRulesDto.getId());
+//            roleMenu.setMenuId(Integer.valueOf(string));
+//            Integer result2 = roleMenuMapper.insert(roleMenu);
+//            if (result2 == 1) {
+//                totalNum++;
+//            }
+//        }
+//        if (totalNum == strings.length) {
+//            return JsonResult.success("权限设置成功");
+//        }
+//        return JsonResult.error("权限设置失败");
     }
 
     /**

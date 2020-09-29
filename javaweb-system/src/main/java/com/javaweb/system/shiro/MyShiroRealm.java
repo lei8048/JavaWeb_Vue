@@ -78,8 +78,12 @@ public class MyShiroRealm extends AuthorizingRealm {
             throw new AuthenticationException(e.getMessage(), e);
         } catch (UserNotExistsException e) {
             throw new UnknownAccountException(e.getMessage(), e);
+        } catch (IncorrectCredentialsException e) {
+            throw new IncorrectCredentialsException(e.getMessage(), e);
         } catch (LockedAccountException e) {
             throw new LockedAccountException(e.getMessage(), e);
+        } catch (ExcessiveAttemptsException e) {
+            throw new ExcessiveAttemptsException(e.getMessage(), e);
         } catch (Exception e) {
             log.info("对用户[" + username + "]进行登录验证..验证未通过{}", e.getMessage());
             throw new AuthenticationException(e.getMessage(), e);

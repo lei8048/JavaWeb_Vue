@@ -4,7 +4,7 @@ server:
   servlet:
     # 项目的前缀名
     context-path: /javaweb
-  IMAGE_URL: http://localhost:9030
+  IMAGE_URL: http://images.vue.javaweb.vip/
 
 spring:
   # 配置数据源

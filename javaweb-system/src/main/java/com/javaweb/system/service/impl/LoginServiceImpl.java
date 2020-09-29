@@ -23,10 +23,7 @@ import com.javaweb.system.vo.menu.MenuListVo;
 import com.javaweb.system.vo.user.UserInfoVo;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.LockedAccountException;
-import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.BeanUtils;
@@ -132,7 +129,17 @@ public class LoginServiceImpl extends BaseServiceImpl<UserMapper, User> implemen
             Map<String, String> result = new HashMap<>();
             result.put("token", SecurityUtils.getSubject().getSession().getId().toString());
             return JsonResult.success("操作成功", result);
+        } catch (UnknownAccountException e) {
+            return JsonResult.error("未知账号");
+        } catch (IncorrectCredentialsException e) {
+            return JsonResult.error("密码不正确");
+        } catch (LockedAccountException e) {
+            return JsonResult.error("账号已锁定");
+        } catch (ExcessiveAttemptsException e) {
+            return JsonResult.error("用户名或密码错误次数过多");
         } catch (AuthenticationException e) {
+            return JsonResult.error("用户名或密码不正确");
+        } catch (Exception e) {
             return JsonResult.error(e.getMessage());
         }
     }
