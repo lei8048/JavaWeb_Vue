@@ -49,7 +49,7 @@ JavaWeb_Vue是基于 SpringBoot2+Vue+ElementUI+Shiro+MybatisPlus 研发的权限
 * 作者：鲲鹏
 * 作者QQ：1175401194  
 * 官网网址：[http://www.javaweb.vip/](http://www.javaweb.vip/)  
-* 文档网址：[http://docs.vue.javaweb.vip](http://docs.javaweb.vip)
+* 文档网址：[http://docs.vue.javaweb.vip](http://docs.vue.javaweb.vip)
 
 ## 后台演示（用户名:admin 密码:123456）
 - JavaWeb前后端分离：[http://manage.vue.javaweb.vip](http://manage.vue.javaweb.vip)
