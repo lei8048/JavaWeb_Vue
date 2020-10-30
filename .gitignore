@@ -29,6 +29,7 @@ build/
 
 ### VS Code ###
 .vscode/
+.svn/
 
 /doc/
 /node_modules/
@@ -36,3 +37,6 @@ build/
 package.json
 package-lock.json
 webpack.config.js
+
+javaweb-ui
+javaweb-doc

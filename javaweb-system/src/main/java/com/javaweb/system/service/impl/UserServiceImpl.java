@@ -150,6 +150,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
      */
     @Override
     public JsonResult edit(User entity) {
+//        return JsonResult.error("演示系统禁止操作");
         // 字段校验
         Set<ConstraintViolation<User>> violationSet = validator.validate(entity);
         for (ConstraintViolation<User> item : violationSet) {
