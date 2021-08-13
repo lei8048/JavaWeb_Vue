@@ -8,6 +8,7 @@ import com.javaweb.system.dto.UserRulesDto;
 import com.javaweb.system.entity.User;
 import com.javaweb.system.query.UserQuery;
 import com.javaweb.system.service.IUserService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +35,7 @@ public class UserController extends BaseController {
      * @param query 查询条件
      * @return
      */
+    @RequiresPermissions("sys:user:list")
     @PostMapping("/list")
     public JsonResult list(@RequestBody UserQuery query) {
         return userService.getList(query);
@@ -46,6 +48,7 @@ public class UserController extends BaseController {
      * @return
      */
     @Log(title = "人员管理", businessType = BusinessType.INSERT)
+    @RequiresPermissions("sys:user:add")
     @PostMapping("/add")
     public JsonResult add(@RequestBody User entity) {
         return userService.edit(entity);
@@ -58,6 +61,7 @@ public class UserController extends BaseController {
      * @return
      */
     @Log(title = "人员管理", businessType = BusinessType.UPDATE)
+    @RequiresPermissions("sys:user:edit")
     @PostMapping("/edit")
     public JsonResult edit(@RequestBody User entity) {
         return userService.edit(entity);
@@ -69,6 +73,7 @@ public class UserController extends BaseController {
      * @param id 记录ID
      * @return
      */
+    @RequiresPermissions("sys:user:info")
     @GetMapping("/info")
     public JsonResult info(Integer id) {
         return userService.info(id);
@@ -81,6 +86,7 @@ public class UserController extends BaseController {
      * @return
      */
     @Log(title = "人员管理", businessType = BusinessType.DELETE)
+    @RequiresPermissions("sys:user:delete")
     @PostMapping("/delete")
     public JsonResult delete(@RequestBody User entity) {
         return userService.delete(entity);
@@ -92,6 +98,7 @@ public class UserController extends BaseController {
      * @param entity 实体对象
      * @return
      */
+    @RequiresPermissions("sys:user:status")
     @PostMapping("/setStatus")
     public JsonResult setStatus(@RequestBody User entity) {
         return userService.setStatus(entity);
@@ -103,6 +110,7 @@ public class UserController extends BaseController {
      * @param entity 实体对象
      * @return
      */
+    @RequiresPermissions("sys:user:resetPwd")
     @PostMapping("/resetPwd")
     public JsonResult resetPwd(@RequestBody User entity) {
         return userService.resetPwd(entity);
@@ -115,6 +123,7 @@ public class UserController extends BaseController {
      * @return
      */
     @PostMapping("/setRules")
+    @RequiresPermissions("sys:user:setRules")
     public JsonResult setRules(@RequestBody UserRulesDto adminRulesDto) {
         return userService.setRules(adminRulesDto);
     }

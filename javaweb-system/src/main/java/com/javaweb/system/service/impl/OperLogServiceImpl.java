@@ -99,6 +99,7 @@ public class OperLogServiceImpl extends BaseServiceImpl<OperLogMapper, OperLog> 
      */
     @Override
     public void insertOperlog(OperLog operLog) {
+        operLog.setMark(1);
         operLogMapper.insertOperlog(operLog);
     }
 }

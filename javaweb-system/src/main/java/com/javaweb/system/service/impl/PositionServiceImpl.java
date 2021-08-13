@@ -120,6 +120,7 @@ public class PositionServiceImpl extends BaseServiceImpl<PositionMapper, Positio
             entity.setCreateUser(1);
             entity.setCreateTime(DateUtils.now());
         }
+        entity.setMark(1);
         return super.edit(entity);
     }
 

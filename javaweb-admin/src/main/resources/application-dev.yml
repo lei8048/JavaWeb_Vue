@@ -13,9 +13,9 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
     # 填写你数据库的url、登录名、密码和数据库名
-    url: jdbc:mysql://127.0.0.1:3306/javaweb.vue?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2b8&useSSL=true&tinyInt1isBit=false
+    url: jdbc:mysql://127.0.0.1:3306/lis-card?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2b8&useSSL=true&tinyInt1isBit=false
     username: root
-    password:
+    password: root
     druid:
       # 连接池的配置信息
       # 初始连接数
@@ -53,9 +53,9 @@ spring:
       statViewServlet:
         url-pattern: "/druid/*"
         # IP白名单(没有配置或者为空，则允许所有访问)
-        allow: 127.0.0.1,192.168.163.1
+        allow: 127.0.0.1,10.17.7.80
         # IP黑名单 (存在共同时，deny优先于allow)
-        deny: 192.168.1.73
+        deny: 10.17.7.80
         #  禁用HTML页面上的“Reset All”功能
         reset-enable: false
         # 登录名
@@ -137,48 +137,6 @@ spring:
   #    enabled: true
   #    check-template: false
 
-  jms:
-    # 默认情况下activemq提供的是queue模式，若要使用topic模式需要配置下面配置
-    pub-sub-domain: false
-
-  # activemq消息队列
-  activemq:
-    #队列地址
-    broker-url: tcp://47.99.90.120:61616
-    #是否是内存模式(内置MQ，true是 false否)
-    in-memory: false
-    # 等待消息发送响应的时间。设置为0等待永远
-    send-timeout: 0
-    #账户
-    user: 'admin'
-    #密码
-    password: '123456'
-
-  # 配置rabbitMq 服务器
-  rabbitmq:
-    host: 47.99.90.120
-    port: 5672
-    username: guest
-    password: guest
-    #虚拟host 可以不设置,使用server默认host
-    virtual-host: /
-    #消息确认配置项
-    #确认消息已发送到交换机(Exchange)
-    publisher-confirms: true
-    #确认消息已发送到队列(Queue)
-    publisher-returns: true
-    listener:
-      simple:
-        #acknowledge-mode: manual #设置确认模式手工确认
-        concurrency: 1 #消费者最小数量
-        max-concurrency: 10 # 消费者最大数量
-        prefetch: 5 # 单次可拉取消息数量
-    cache:
-      connection:
-        # 缓存连接模式,默认一个连接,多个channel
-        mode: channel
-#         多个连接,多个channel
-#        mode: connection
 
 file:
   #上传的服务器上的映射文件夹
@@ -223,7 +181,7 @@ shiro:
 # 代码生成
 generate:
   # 作者
-  author: 鲲鹏
+  author: qinlei
   # 默认生成包路径 system 需改成自己的模块名称 如 system monitor tool
   packageName: com.javaweb.admin
   # 模块名

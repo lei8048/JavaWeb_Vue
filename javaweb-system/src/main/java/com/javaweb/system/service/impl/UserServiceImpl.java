@@ -169,6 +169,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
             entity.setCreateUser(1);
             entity.setCreateTime(DateUtils.now());
         }
+        entity.setMark(1);
         boolean result = this.saveOrUpdate(entity);
         if (!result) {
             return JsonResult.error();

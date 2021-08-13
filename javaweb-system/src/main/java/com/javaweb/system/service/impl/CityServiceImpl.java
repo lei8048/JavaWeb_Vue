@@ -128,6 +128,7 @@ public class CityServiceImpl extends BaseServiceImpl<CityMapper, City> implement
             entity.setCreateUser(1);
             entity.setCreateTime(DateUtils.now());
         }
+        entity.setMark(1);
         return super.edit(entity);
     }
 

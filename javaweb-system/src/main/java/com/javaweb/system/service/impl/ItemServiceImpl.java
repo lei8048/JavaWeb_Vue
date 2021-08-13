@@ -129,6 +129,7 @@ public class ItemServiceImpl extends BaseServiceImpl<ItemMapper, Item> implement
             entity.setCreateUser(1);
             entity.setCreateTime(DateUtils.now());
         }
+        entity.setMark(1);
         return super.edit(entity);
     }
 

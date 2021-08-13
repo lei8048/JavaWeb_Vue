@@ -185,6 +185,7 @@ public class ItemCateServiceImpl extends BaseServiceImpl<ItemCateMapper, ItemCat
             entity.setCreateUser(1);
             entity.setCreateTime(DateUtils.now());
         }
+        entity.setMark(1);
         return super.edit(entity);
     }
 

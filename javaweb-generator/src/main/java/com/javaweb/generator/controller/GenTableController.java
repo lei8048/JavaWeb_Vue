@@ -85,7 +85,7 @@ public class GenTableController extends BaseController {
      * @return
      */
     @GetMapping("/getTableInfo")
-    public JsonResult getTableInfo(String tableId) {
+    public JsonResult getTableInfo(@RequestParam(value = "tableId") String tableId) {
         GenTable table = genTableService.selectGenTableById(Integer.valueOf(tableId));
         List<GenTableColumn> list = genTableColumnService.selectGenTableColumnListByTableId(Integer.valueOf(tableId));
         Map<String, Object> map = new HashMap<String, Object>();

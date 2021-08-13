@@ -150,6 +150,7 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, Menu> implement
             entity.setCreateUser(1);
             entity.setCreateTime(DateUtils.now());
         }
+        entity.setMark(1);
         return super.edit(entity);
     }
 

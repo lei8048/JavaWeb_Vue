@@ -86,7 +86,7 @@ public class LogAspect {
             operLog.setOperName(user.getRealname());
             if (e != null) {
                 operLog.setStatus(BusinessStatus.FAIL.ordinal());
-                operLog.setErrorMsg(StringUtils.substring(e.getMessage(), 0, 2000));
+                operLog.setErrorMsg(StringUtils.substring(e.getMessage(), 0, 200));
             }
             // 设置方法名称
             String className = joinPoint.getTarget().getClass().getName();

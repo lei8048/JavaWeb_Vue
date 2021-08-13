@@ -92,7 +92,7 @@ public class MyShiroRealm extends AuthorizingRealm {
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 user,                                  //用户名
                 user.getPassword(),                    //密码
-                ByteSource.Util.bytes(""),      //设置盐值
+                /*ByteSource.Util.bytes(""),      //设置盐值*/
                 getName()
         );
         return authenticationInfo;

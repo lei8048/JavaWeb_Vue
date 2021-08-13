@@ -1,5 +1,6 @@
 package com.javaweb.system.config;
 
+import com.javaweb.common.utils.StringUtils;
 import com.javaweb.system.filter.ShiroLoginFilter;
 import com.javaweb.system.filter.ShiroLogoutFilter;
 import com.javaweb.system.shiro.MySessionManager;
@@ -181,6 +182,9 @@ public class ShiroConfig {
         redisManager.setHost(host);
         redisManager.setPort(port);
         redisManager.setTimeout(timeout);
+        if (!StringUtils.isEmpty(password)) {
+            redisManager.setPassword(password);
+        }
         return redisManager;
     }
 

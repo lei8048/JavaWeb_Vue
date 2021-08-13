@@ -32,11 +32,11 @@
             <groupId>com.javaweb</groupId>
             <artifactId>javaweb-quartz</artifactId>
         </dependency>
-        <!-- 消息队列 -->
+        <!--&lt;!&ndash; 消息队列 &ndash;&gt;
         <dependency>
             <groupId>com.javaweb</groupId>
             <artifactId>javaweb-queue</artifactId>
-        </dependency>
+        </dependency>-->
 
 
 <!--        <dependency>-->

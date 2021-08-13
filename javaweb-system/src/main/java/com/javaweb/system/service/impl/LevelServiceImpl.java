@@ -119,6 +119,7 @@ public class LevelServiceImpl extends BaseServiceImpl<LevelMapper, Level> implem
             entity.setCreateUser(1);
             entity.setCreateTime(DateUtils.now());
         }
+        entity.setMark(1);
         return super.edit(entity);
     }
 

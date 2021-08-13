@@ -19,6 +19,8 @@ import java.util.Map;
 /**
  * Druid连接池配置类
  */
+
+@SuppressWarnings("all")
 @Configuration
 public class DruidConfig {
 
@@ -36,8 +38,8 @@ public class DruidConfig {
         Map<String, String> initParams = new HashMap<>();
         initParams.put("loginUsername", "admin");
         initParams.put("loginPassword", "123456");
-        initParams.put("allow", "");//默认就是允许所有访问
-        initParams.put("deny", "192.168.15.21");
+        initParams.put("allow", "172.0.0.1");//默认就是允许所有访问
+        initParams.put("deny", "10.17.7.80");
         bean.setInitParameters(initParams);
         return bean;
     }
@@ -48,9 +50,8 @@ public class DruidConfig {
         final FilterRegistrationBean<Filter> bean = new FilterRegistrationBean<>();
         bean.setFilter(new WebStatFilter());
         Map<String, String> initParams = new HashMap<>();
+        // 忽略过滤格式
         bean.setInitParameters(initParams);
-
-        bean.setUrlPatterns(Arrays.asList("/*"));
         return bean;
     }
 

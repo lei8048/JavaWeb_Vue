@@ -95,6 +95,7 @@ public class MessageTemplateServiceImpl extends BaseServiceImpl<MessageTemplateM
             entity.setCreateUser(1);
             entity.setCreateTime(DateUtils.now());
         }
+        entity.setMark(1);
         return super.edit(entity);
     }
 

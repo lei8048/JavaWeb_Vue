@@ -137,6 +137,7 @@ public class DepServiceImpl extends BaseServiceImpl<DepMapper, Dep> implements I
             entity.setCreateUser(1);
             entity.setCreateTime(DateUtils.now());
         }
+        entity.setMark(1);
         return super.edit(entity);
     }
 

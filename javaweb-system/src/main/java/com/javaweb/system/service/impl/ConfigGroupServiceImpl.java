@@ -94,6 +94,7 @@ public class ConfigGroupServiceImpl extends BaseServiceImpl<ConfigGroupMapper, C
             entity.setCreateUser(1);
             entity.setCreateTime(DateUtils.now());
         }
+        entity.setMark(1);
         return super.edit(entity);
     }
 

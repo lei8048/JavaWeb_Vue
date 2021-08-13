@@ -66,6 +66,7 @@ public class AsyncFactory {
                 loginLog.setBrowser(browser);
                 loginLog.setOs(os);
                 loginLog.setMsg(message);
+                loginLog.setMark(1);
                 // 日志状态
                 if (Constants.LOGIN_SUCCESS.equals(status) || Constants.LOGOUT.equals(status)) {
                     loginLog.setStatus(Integer.valueOf(Constants.SUCCESS));
