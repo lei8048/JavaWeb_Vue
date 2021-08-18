@@ -94,6 +94,7 @@ public class LogAspect {
             operLog.setMethod(className + "." + methodName + "()");
             // 设置请求方式
             operLog.setRequestMethod(ServletUtils.getRequest().getMethod());
+            operLog.setMark(1);
             // 处理设置注解上的参数
             getControllerMethodDescription(joinPoint, controllerLog, operLog);
             // 保存数据库

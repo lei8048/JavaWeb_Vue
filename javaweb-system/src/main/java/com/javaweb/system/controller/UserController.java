@@ -8,11 +8,15 @@ import com.javaweb.system.dto.UserRulesDto;
 import com.javaweb.system.entity.User;
 import com.javaweb.system.query.UserQuery;
 import com.javaweb.system.service.IUserService;
+import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.apache.shiro.authz.annotation.RequiresUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.javaweb.common.common.BaseController;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * <p>
@@ -48,6 +52,7 @@ public class UserController extends BaseController {
      * @return
      */
     @Log(title = "人员管理", businessType = BusinessType.INSERT)
+    @RequiresRoles(value = {"super","admin"},logical = Logical.OR)
     @RequiresPermissions("sys:user:add")
     @PostMapping("/add")
     public JsonResult add(@RequestBody User entity) {
@@ -61,6 +66,7 @@ public class UserController extends BaseController {
      * @return
      */
     @Log(title = "人员管理", businessType = BusinessType.UPDATE)
+    @RequiresRoles(value = {"super","admin"},logical = Logical.OR)
     @RequiresPermissions("sys:user:edit")
     @PostMapping("/edit")
     public JsonResult edit(@RequestBody User entity) {
@@ -86,6 +92,7 @@ public class UserController extends BaseController {
      * @return
      */
     @Log(title = "人员管理", businessType = BusinessType.DELETE)
+    @RequiresRoles(value = {"super","admin"},logical = Logical.OR)
     @RequiresPermissions("sys:user:delete")
     @PostMapping("/delete")
     public JsonResult delete(@RequestBody User entity) {
@@ -99,6 +106,7 @@ public class UserController extends BaseController {
      * @return
      */
     @RequiresPermissions("sys:user:status")
+    @RequiresRoles(value = {"super","admin"},logical = Logical.OR)
     @PostMapping("/setStatus")
     public JsonResult setStatus(@RequestBody User entity) {
         return userService.setStatus(entity);
@@ -123,9 +131,19 @@ public class UserController extends BaseController {
      * @return
      */
     @PostMapping("/setRules")
+    @RequiresRoles(value = {"super","admin"},logical = Logical.OR)
     @RequiresPermissions("sys:user:setRules")
     public JsonResult setRules(@RequestBody UserRulesDto adminRulesDto) {
         return userService.setRules(adminRulesDto);
+    }
+
+
+    @RequiresPermissions("sys:user:view")
+    @GetMapping("/view")
+    public String requireUser(){
+        ModelAndView modelAndView = new ModelAndView("path:user");
+        modelAndView.setViewName("user");
+        return "/user/view";
     }
 
 }

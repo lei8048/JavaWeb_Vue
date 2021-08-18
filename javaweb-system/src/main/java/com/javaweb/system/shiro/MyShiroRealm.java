@@ -1,10 +1,17 @@
 package com.javaweb.system.shiro;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.javaweb.common.exception.user.CaptchaException;
 import com.javaweb.common.exception.user.UserNotExistsException;
 import com.javaweb.system.entity.Menu;
+import com.javaweb.system.entity.Role;
 import com.javaweb.system.entity.User;
+import com.javaweb.system.entity.UserRole;
+import com.javaweb.system.mapper.RoleMapper;
+import com.javaweb.system.mapper.UserRoleMapper;
 import com.javaweb.system.service.ILoginService;
+import com.javaweb.system.service.IRoleService;
+import com.javaweb.system.service.IUserRoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -12,16 +19,26 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+import org.apache.shiro.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.Resource;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class MyShiroRealm extends AuthorizingRealm {
 
     @Autowired
     private ILoginService loginService;
+
+    @Resource
+    private RoleMapper roleMapper;
+
+    @Resource
+    private UserRoleMapper userRoleMapper;
 
     /**
      * 授权权限
@@ -35,8 +52,18 @@ public class MyShiroRealm extends AuthorizingRealm {
         User user = (User) principalCollection.getPrimaryPrincipal();
         //添加角色和权限
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
-
         Integer userId = user.getId();
+        QueryWrapper<UserRole> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_id",userId);
+        List<UserRole> userRoles = userRoleMapper.selectList(wrapper);
+        if(!CollectionUtils.isEmpty(userRoles)){
+            List<Integer> ids = userRoles.stream().map(UserRole::getRoleId).collect(Collectors.toList());
+            List<Role> roles = roleMapper.selectBatchIds(ids);
+            if(!CollectionUtils.isEmpty(roles)){
+                Set<String> names = roles.stream().map(Role::getName).collect(Collectors.toSet());
+                simpleAuthorizationInfo.setRoles(names);
+            }
+        }
         if (userId.equals(1)) {
             //管理员拥有所有权限
             simpleAuthorizationInfo.addStringPermission("*:*");
